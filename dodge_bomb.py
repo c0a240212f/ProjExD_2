@@ -62,24 +62,22 @@ def main():
                 sum_mv[0] += mv[0]
                 sum_mv[1] += mv[1]
         kk_rct.move_ip(sum_mv)
-        
-        # 練習問題3: こうかとんが画面外なら元の位置に戻す
         if check_bound(kk_rct) != (True, True):
             kk_rct.move_ip(-sum_mv[0], -sum_mv[1])
-        
         screen.blit(kk_img, kk_rct)
 
         # 爆弾の移動と壁判定
         bb_rct.move_ip(vx, vy)
-        
-        # 練習問題3: 爆弾が画面外なら速度を反転する
         yoko, tate = check_bound(bb_rct)
-        if not yoko:  # 横方向にはみ出たら
+        if not yoko:
             vx *= -1
-        if not tate:  # 縦方向にはみ出たら
+        if not tate:
             vy *= -1
-            
         screen.blit(bb_img, bb_rct)
+
+        # 練習問題4: 衝突判定
+        if kk_rct.colliderect(bb_rct):
+            return
 
         pg.display.update()
         tmr += 1
