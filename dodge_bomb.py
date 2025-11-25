@@ -167,7 +167,7 @@ def main():
             
         screen.blit(bb_img_curr, bb_rct)
 
-        # ゲームオーバー判定
+        # ゲームオーバー
         if kk_rct.colliderect(bb_rct):
             game_over(screen)
             return
